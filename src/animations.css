@@ -1,0 +1,116 @@
+/* ============================================================
+   MELLOW JOHNNY'S — Animation System
+   All scroll-reveal keyframes, base states, and stagger utilities.
+   Imported globally in main.jsx.
+   ============================================================ */
+
+/* --- Keyframes ---------------------------------------------- */
+
+@keyframes heroSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* --- Scroll-reveal base state ------------------------------- */
+/* Elements start invisible; JS adds .reveal--visible when in viewport */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 350ms var(--ease-out),
+    transform 350ms var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image variant — scale-in rather than slide-up */
+.reveal--img {
+  opacity: 0;
+  transform: scale(1.05);
+  transition:
+    opacity 500ms var(--ease-out),
+    transform 500ms var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal--img.reveal--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Stagger delay utilities -------------------------------- */
+/* Applied alongside .reveal; each ~80ms apart */
+
+.stagger-1 { transition-delay: 80ms; }
+.stagger-2 { transition-delay: 160ms; }
+.stagger-3 { transition-delay: 240ms; }
+.stagger-4 { transition-delay: 320ms; }
+.stagger-5 { transition-delay: 400ms; }
+
+/* --- Hero entrance keyframe classes ------------------------- */
+/* Applied directly in Hero.css with per-element delays */
+
+.hero-enter {
+  animation: heroSlideUp var(--dur-slow) var(--ease-out) both;
+}
+
+.hero-enter--fade {
+  animation: heroFadeIn var(--dur-slow) var(--ease-out) both;
+}
+
+/* Delays for each hero element */
+.hero-enter-d1 { animation-delay: 100ms; }
+.hero-enter-d2 { animation-delay: 250ms; }
+.hero-enter-d3 { animation-delay: 400ms; }
+.hero-enter-d4 { animation-delay: 520ms; }
+.hero-enter-d5 { animation-delay: 620ms; }
+.hero-enter-d6 { animation-delay: 740ms; }
+
+/* Page-header entrance (inner pages) — single wave */
+.page-enter {
+  animation: heroSlideUp 400ms var(--ease-out) both;
+}
+.page-enter-d1 { animation-delay: 80ms;  }
+.page-enter-d2 { animation-delay: 200ms; }
+.page-enter-d3 { animation-delay: 300ms; }
+
+/* --- prefers-reduced-motion override ----------------------- */
+/* All animated elements immediately visible, no transforms */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--img {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-enter,
+  .hero-enter--fade,
+  .page-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

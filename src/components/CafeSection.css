@@ -1,0 +1,116 @@
+.cafe {
+  background: var(--color-bg);
+  padding: 96px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.cafe__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+/* Image */
+.cafe__image-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  /* The reveal--img class from animations.css handles scale-in on scroll */
+}
+
+.cafe__image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* Subtle additional zoom on hover (after reveal has settled) */
+.cafe__image-wrap:hover .cafe__image {
+  transform: scale(1.03);
+}
+
+.cafe__image-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(21, 23, 26, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border-strong);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-cream);
+}
+
+.cafe__image-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  flex-shrink: 0;
+}
+
+/* Content */
+.cafe__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cafe__body {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin-top: 16px;
+  margin-bottom: 28px;
+}
+
+/* Menu list */
+.cafe__menu-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 20px 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.cafe__menu-highlights li {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding-left: 20px;
+  position: relative;
+}
+
+.cafe__menu-highlights li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-rust);
+  font-weight: 700;
+}
+
+.cafe__btn {
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .cafe__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .cafe__image { height: 360px; }
+  .cafe__btn { align-self: center; width: 100%; justify-content: center; }
+}

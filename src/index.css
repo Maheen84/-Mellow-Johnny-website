@@ -1,0 +1,332 @@
+/* ============================================================
+   MELLOW JOHNNY'S — Premium Dark Design System v4
+   ============================================================ */
+
+/* --- Google Fonts: Poppins (display) + Inter (body) -------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+
+/* --- Tokens ------------------------------------------------- */
+:root {
+  /* Colors */
+  --color-bg:           #15171A;
+  --color-bg-2:         #1C1E22;
+  --color-surface:      rgba(255, 255, 255, 0.04);
+  --color-surface-2:    rgba(255, 255, 255, 0.07);
+  --color-border:       rgba(255, 255, 255, 0.10);
+  --color-border-strong:rgba(255, 255, 255, 0.20);
+
+  /* Electric Teal Accent System */
+  --color-accent:         #2DD4BF;
+  --color-accent-dark:    #1FA394;
+  --color-accent-light:   #5EEAD4;
+  --color-accent-glow:    rgba(45, 212, 191, 0.35);
+  --color-accent-glow-sm: rgba(45, 212, 191, 0.20);
+
+  /* Alias legacy variable names for complete compatibility */
+  --color-rust:         var(--color-accent);
+  --color-rust-dark:    var(--color-accent-dark);
+  --color-rust-light:   var(--color-accent);
+  --color-rust-glow:    var(--color-accent-glow);
+  --color-rust-glow-sm: var(--color-accent-glow-sm);
+
+  --color-cream:        #F7F3EC;
+  --color-white:        #FFFFFF;
+  --color-text:         #E8E4DD;
+  --color-text-muted:   rgba(232, 228, 221, 0.55);
+  --color-text-faint:   rgba(232, 228, 221, 0.30);
+
+  /* Fonts */
+  --font-display: 'Poppins', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Radii */
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-pill: 9999px;
+
+  /* Shadows / Glows */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:   0 4px 20px rgba(0,0,0,0.5);
+  --shadow-lg:   0 8px 40px rgba(0,0,0,0.6);
+  --glow-rust:   0 0 32px var(--color-accent-glow), 0 0 80px var(--color-accent-glow-sm);
+  --glow-btn:    0 4px 24px rgba(45, 212, 191, 0.45);
+
+  /* Motion */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:    180ms;
+  --dur-normal:  280ms;
+  --dur-slow:    420ms;
+
+  /* Layout */
+  --max-width:   1200px;
+  --nav-height:  72px;
+}
+
+/* --- Reset -------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol { list-style: none; }
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* --- Typography -------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); }
+h2 { font-size: clamp(1.9rem, 3.8vw, 3rem); }
+h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); }
+h4 { font-size: clamp(1rem, 1.6vw, 1.2rem); }
+
+p  { font-size: 1rem; line-height: 1.75; color: var(--color-text-muted); }
+
+.lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+/* --- Layout ------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+section { padding: 96px 0; }
+
+/* --- Section Label / Badge --------------------------------- */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-rust-light);
+  margin-bottom: 20px;
+}
+
+.section-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-rust);
+  flex-shrink: 0;
+}
+
+/* --- Divider ----------------------------------------------- */
+.divider {
+  width: 40px;
+  height: 3px;
+  background: var(--color-rust);
+  border-radius: var(--radius-pill);
+  margin: 16px 0 24px;
+}
+
+.divider--center { margin: 16px auto 24px; }
+
+/* --- Hairline Rule ----------------------------------------- */
+.hairline {
+  height: 1px;
+  background: var(--color-border);
+  border: none;
+  width: 100%;
+}
+
+/* --- Buttons ----------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+  border: 2px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #111827;
+  border-color: var(--color-accent);
+  box-shadow: var(--glow-btn);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: var(--color-white);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--glow-rust), 0 6px 32px rgba(45, 212, 191, 0.65);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+
+.btn-outline:hover {
+  background: var(--color-surface);
+  border-color: var(--color-accent);
+  color: var(--color-cream);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 20px rgba(45, 212, 191, 0.25);
+}
+
+/* --- Card -------------------------------------------------- */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--dur-normal) var(--ease-out),
+    transform var(--dur-normal) var(--ease-out),
+    box-shadow var(--dur-normal) var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* --- Page Header (shared across inner pages) --------------- */
+.page-header {
+  position: relative;
+  padding: 140px 0 72px;
+  margin-top: calc(-1 * var(--nav-height));
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: var(--color-bg-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 100%);
+  height: 100%;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 20%,
+    rgba(45, 212, 191, 0.22) 0%,
+    rgba(45, 212, 191, 0.06) 50%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-header__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header__title {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 900;
+  color: var(--color-cream);
+  margin-bottom: 16px;
+}
+
+.page-header__subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--color-text-muted);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* --- Page wrapper ------------------------------------------ */
+.page {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+/* --- Noise/grain texture overlay (pseudo) ------------------ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* --- Responsive -------------------------------------------- */
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+  .container { padding: 0 20px; }
+  .page-header { padding: 120px 0 60px; min-height: 360px; }
+}
